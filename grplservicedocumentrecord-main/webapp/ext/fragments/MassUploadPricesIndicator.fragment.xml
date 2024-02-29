@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+	<Dialog title="{i18n>MassUploadPrices}" class="sapUiContentPadding" contentWidth="30%" horizontalScrolling="false">
+		<content>
+			<l:VerticalLayout width="100%">
+				<Text text="{appModel>/CheckServiceLoaderText}" class="sapUiSmallMarginBottom" />
+				<ProgressIndicator class="sapUiSmallMargin" showValue="false" percentValue="{appModel>/CheckServiceLoader}" state="{appModel>/CheckServiceLoaderStatus}" displayOnly="true" displayAnimation= "true"/>
+				<Text text="{appModel>/RevisionCreationLoaderText}" class="sapUiSmallMarginBottom" />
+				<ProgressIndicator class="sapUiSmallMargin" percentValue="{appModel>/RevisionCreationLoader}" state="{appModel>/RevisionCreationLoaderStatus}" displayOnly="true" displayAnimation= "true"/>
+				<Text text="{appModel>/UploadPricesLoaderText}" class="sapUiSmallMarginBottom" />
+				<ProgressIndicator class="sapUiSmallMargin" width="100%" percentValue="{appModel>/UploadPricesLoader}" state="{appModel>/UploadPricesLoaderStatus}" displayOnly="true"/>
+			</l:VerticalLayout>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

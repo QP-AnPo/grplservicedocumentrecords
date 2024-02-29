@@ -1,0 +1,280 @@
+{
+    "_version": "1.48.0",
+    "sap.app": {
+        "id": "com.rs.cf.grplservicedocumentrecord",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.9.1",
+            "toolsId": "bbb0772a-47a0-4e1e-a4d0-1ddff2e79070"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZCS_UI_GRPL_O2/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZCS_UI_GRPL_O2_VAN",
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZCS_UI_GRPL_O2_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZCS_UI_GRPL_O2_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZCS_UI_GRPL_O2_VAN.xml"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "com-rs-cf-grplservicedocumentrecord-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "grplservicedocumentrecord",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": "sap-icon://BusinessSuiteInAppSymbols/icon-legal-section",
+                    "indicatorDataSource": {
+                        "dataSource": "mainService",
+                        "path": "ServiceDocument/$count",
+                        "refresh": 600
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.108.7",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.f": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.suite.ui.generic.template": {}
+            }
+        },
+        "components": {
+            "cc.spreadsheetimporter.v0_29_0": {}
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.rs.cf.grplservicedocumentrecord.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "appModel": {
+				"type": "sap.ui.model.json.JSONModel"
+			}
+        },
+        "resources": {
+            "css": []
+        },
+        "componentUsages": {
+            "spreadsheetImporter": {
+                "name": "cc.spreadsheetimporter.v0_29_0"
+            }
+        },
+        "resourceRoots": {
+            "cc.spreadsheetimporter.v0_29_0": "./thirdparty/customControl/spreadsheetImporter/v0_29_0"
+        },
+        "routing": {
+            "config": {},
+            "routes": [],
+            "targets": {}
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.suite.ui.generic.template.ListReport.view.ListReport": {
+                        "controllerName": "com.rs.cf.grplservicedocumentrecord.ext.controller.ListReportExt",
+                        "sap.ui.generic.app": {
+                            "ServiceDocument": {
+                                "EntitySet": "ServiceDocument",
+                                "Actions": {
+                                    "massApproval": {
+                                        "id": "approveSSDRs",
+                                        "text": "{i18n>MassApproval}",
+                                        "press": "onOpenMassApprovalDialog",
+                                        "requiresSelection": true
+                                    },
+                                    "onOpenUpdloadManualPrices": {
+                                        "id": "updloadNewPricesId",
+                                        "text": "{i18n>MassUploadPrices}",
+                                        "press": "onOpenSpreadsheetMassUploadPrices",
+                                        "requiresSelection": false
+                                    },
+                                    "onOpenUpdloadSDRExcel": {
+                                        "id": "uploadExcelId",
+                                        "text": "{i18n>MassUploadPriceBase}",
+                                        "press": "onOpenSpreadsheetMassUploadPriceBase",
+                                        "requiresSelection": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "controllerName": "com.rs.cf.grplservicedocumentrecord.ext.controller.ObjectPageExt"
+                    }
+
+                },
+                "sap.ui.viewExtensions": {
+                    "sap.suite.ui.generic.template.ListReport.view.ListReport": {
+                        "SmartFilterBarControlConfigurationExtension|ServiceDocument": {
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "com.rs.cf.grplservicedocumentrecord.ext.fragments.CustomFilter",
+                            "type": "XML"
+                        }
+                    },
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "ResponsiveTableColumnsExtension|ServiceAttachment|Attachment": {
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "com.rs.cf.grplservicedocumentrecord.ext.fragments.ResponsiveTableColumns",
+                            "type": "XML"
+                        },
+                        "ResponsiveTableCellsExtension|ServiceAttachment|Attachment": {
+                            "className": "sap.ui.core.Fragment",
+                            "fragmentName": "com.rs.cf.grplservicedocumentrecord.ext.fragments.ResponsiveTableCells",
+                            "type": "XML"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui.generic.app": {
+        "_version": "1.3.0",
+        "settings": {
+            "forceGlobalRefresh": false,
+            "objectPageHeaderType": "Dynamic",
+            "considerAnalyticalParameters": true,
+            "showDraftToggle": false
+        },
+        "pages": {
+            "ListReport|ServiceDocument": {
+                "entitySet": "ServiceDocument",
+                "component": {
+                    "name": "sap.suite.ui.generic.template.ListReport",
+                    "settings": {
+                        "condensedTableLayout": true,
+                        "smartVariantManagement": true,
+                        "enableTableFilterInPageVariant": true,
+                        "dataLoadSettings": {
+                            "loadDataOnAppLaunch": "always"
+                        },
+                        "filterSettings": {
+                            "dateSettings": {
+                                "useDateRange": true
+                            }
+                        },
+                        "tableSettings": {
+                            "type": "GridTable",
+                            "multiSelect": true,
+                            "selectAll": true
+                        }
+                    },
+                    "list": true
+                },
+                "pages": {
+                    "ObjectPage|ServiceDocument": {
+                        "entitySet": "ServiceDocument",
+                        "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                        "component": {
+                            "name": "sap.suite.ui.generic.template.ObjectPage",
+                            "settings": {
+                                "sections": {
+                                    "to_ServiceOption::com.sap.vocabularies.UI.v1.LineItem": {
+                                        "navigationProperty": "to_ServiceOption",
+                                        "entitySet": "ServiceOption",
+                                        "tableSettings": {
+                                            "type": "ResponsiveTable",
+                                            "multiSelect": true,
+                                            "condensedTableLayout": true
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "pages": {
+                            "ObjectPage|to_ServiceAttachment": {
+                                "navigationProperty": "to_ServiceAttachment",
+                                "entitySet": "ServiceAttachment",
+                                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "comrscfgrplservicedocumentrecord"
+    }
+}

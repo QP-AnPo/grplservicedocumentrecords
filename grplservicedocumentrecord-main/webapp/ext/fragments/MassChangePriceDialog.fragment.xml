@@ -1,0 +1,77 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:sf="sap.ui.comp.smartform"
+		xmlns:smartField="sap.ui.comp.smartfield"
+		xmlns:core="sap.ui.core"
+		xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+		xmlns:smartmultiedit="sap.ui.comp.smartmultiedit"
+		xmlns:l="sap.ui.layout">
+	<Dialog
+			title="Mass Change of the Prices"
+			class="sapUiContentPadding"
+			stretchOnPhone="true"
+			id="multipleEditingDialog"
+			contentWidth="40rem"
+			horizontalScrolling="false">
+		<content>
+			<smartmultiedit:Container entitySet="ServiceDocument" id="multiEditContainer"
+									  app:defaultDropDownDisplayBehaviour="descriptionOnly">
+				<smartmultiedit:customData>
+					<core:CustomData key="dateFormatSettings" value='\{"UTC":true,"style":"long"\}'/>
+				</smartmultiedit:customData>
+				<smartmultiedit:layout>
+					<sf:SmartForm editable="true">
+						<sf:layout>
+							<sf:Layout labelSpanM="12" labelSpanL="12" labelSpanXL="12" />
+						</sf:layout>
+						<sf:groups>
+							<sf:Group>
+							<sf:GroupElement>
+									<sf:elements>
+									<smartmultiedit:Field propertyName="ValidTo"/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+									<smartmultiedit:Field propertyName="StandardPriceRepair"/>
+									<Input
+										type="Number"
+										placeholder="Percentage"
+										description="%"
+										/>
+									</sf:elements>
+								</sf:GroupElement>
+								
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field propertyName="PerfCheckBasePrice"/>
+											<Input
+										type="Number"
+										placeholder="Percentage"
+										description="%"
+										/>
+									</sf:elements>
+								</sf:GroupElement>
+								<sf:GroupElement>
+									<sf:elements>
+										<smartmultiedit:Field visible="{= ${AccCalibrationMode} === '01' ? true : false}" propertyName="AccCalibrationValue"/>
+											<Input
+											visible="{= ${AccCalibrationMode} === '01' ? true : false}"
+										type="Number"
+										placeholder="Percentage"
+										description="%"
+										/>
+									</sf:elements>
+								</sf:GroupElement>
+							</sf:Group>
+						</sf:groups>
+					</sf:SmartForm>
+				</smartmultiedit:layout>
+			</smartmultiedit:Container>
+		</content>
+		<buttons>
+			<Button text="Save" press="onSaveMassChangePrices" type="Emphasized"/>
+			<Button text="Cancel" press="onCloseMassChangePricesDialog"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

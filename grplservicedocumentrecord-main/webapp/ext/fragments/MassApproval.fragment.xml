@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+    	<Dialog
+			title="Mass Approval"
+			class="sapUiContentPadding"
+			contentWidth="30%"
+			horizontalScrolling="false">
+		<content>
+    	<l:VerticalLayout width="100%"> 	
+            <Text text="Approving documents" class="sapUiSmallMarginBottom" />
+			<ProgressIndicator
+				class="sapUiSmallMargin"
+				showValue="false"
+				percentValue="{appModel>/ApproveLoader}"
+				state="{appModel>/ApproveLoaderStatus}"
+				displayOnly="false"
+				displayAnimation= "true"/>
+        </l:VerticalLayout>
+		
+        	</content>
+            </Dialog>
+
+  
+</core:FragmentDefinition>

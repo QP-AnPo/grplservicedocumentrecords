@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" xmlns:core="sap.ui.core">
+<smartfilterbar:ControlConfiguration 
+    index="90"
+    groupId="_BASIC" 
+    id="IsConfidential"
+    key="IsConfidential"
+    label="Is Confidential"
+    visibleInAdvancedArea="true"
+   >
+    <smartfilterbar:customControl>
+        <ComboBox id="IsConfidentialID">
+        <core:Item key="true" text="{i18n>Yes}"/>
+        <core:Item key="false" text="{i18n>No}"/>
+    </ComboBox>
+    </smartfilterbar:customControl>
+</smartfilterbar:ControlConfiguration>
+
+<smartfilterbar:ControlConfiguration 
+    index="101"
+    groupId="_BASIC" 
+    id="ValidFromID"
+    key="ValidFrom"
+    label="Valid From"
+    visibleInAdvancedArea="true"
+   >
+    <smartfilterbar:customControl>
+       <DatePicker ></DatePicker>
+    </smartfilterbar:customControl>
+</smartfilterbar:ControlConfiguration>
+<smartfilterbar:ControlConfiguration 
+    index="101"
+    groupId="_BASIC" 
+    id="ValidToID"
+    key="ValidTo"
+    label="Valid To"
+    visibleInAdvancedArea="true"
+   >
+    <smartfilterbar:customControl>
+       <DatePicker ></DatePicker>
+    </smartfilterbar:customControl>
+</smartfilterbar:ControlConfiguration>
+</core:FragmentDefinition>
